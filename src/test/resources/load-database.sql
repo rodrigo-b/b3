@@ -1,1 +1,1 @@
-INSERT INTO PLANET  (NAME) VALUES ('Alderaan');
+INSERT INTO PLANET  (NAME) VALUES ('Alderaan', 'temperate','grasslands, mountains',2);

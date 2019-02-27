@@ -30,26 +30,27 @@ public class PlanetRepositoryTest {
 	@Autowired
 	private PlanetRepository sut;
 	
-//	@Test	
-//	public void shouldFindPlanetById(){
-//		
-//		Optional<Planet> optional = sut.findById(1L);
-//		assertThat(optional.isPresent()).isTrue();
-//		
-//		Planet planet = optional.get();
-//		
-//		assertThat(planet.getName()).isEqualTo("teste");
-//		assertThat(planet.getClimate()).isEqualTo("temperate");
-//		assertThat(planet.getTerrain()).isEqualTo("grasslands, mountains");
-//		assertThat(planet.getTimesInMovie()).isEqualTo(2);
-//	}
+	@Test	
+	public void shouldFindPlanetById(){
+		
+		Optional<Planet> optional = sut.findById(1L);
+		assertThat(optional.isPresent()).isTrue();
+		
+		Planet planet = optional.get();
+		
+		assertThat(planet.getName()).isEqualTo("Alderaan");
+		assertThat(planet.getClimate()).isEqualTo("temperate");
+		assertThat(planet.getTerrain()).isEqualTo("grasslands, mountains");
+		assertThat(planet.getTimesInMovie()).isEqualTo(2);
+		assertThat(planet.getId()).isEqualTo(1L);
+	}
 	
-//	@Test 
-//	public void shouldNotFindPlanetById(){
-//		Optional<Planet> optional = sut.findById(9999999L);
-//		assertThat(optional.isPresent()).isFalse();
-//	}
-//	
+	@Test 
+	public void shouldNotFindPlanetById(){
+		Optional<Planet> optional = sut.findById(9999999L);
+		assertThat(optional.isPresent()).isFalse();
+	}
+	
 	@Test
 	public void shouldFindPlanetByName(){
 		
@@ -58,19 +59,19 @@ public class PlanetRepositoryTest {
 		
 		Planet planet = optional.get();
 		assertThat(planet.getName()).isEqualTo("Alderaan");
-//		assertThat(planet.getClimate()).isEqualTo("temperate");
-//		assertThat(planet.getTerrain()).isEqualTo("grasslands, mountains");
-//		assertThat(planet.getTimesInMovie()).isEqualTo(2);
-//		assertThat(planet.getId()).isEqualTo(1L);
+		assertThat(planet.getClimate()).isEqualTo("temperate");
+		assertThat(planet.getTerrain()).isEqualTo("grasslands, mountains");
+		assertThat(planet.getTimesInMovie()).isEqualTo(2);
+		assertThat(planet.getId()).isEqualTo(1L);
 	}
-//	
-//	@Test
-//	public void shouldNotFindPlanetByName(){
-//		
-//		Optional<Planet> optional = sut.findByName("marte");
-//		assertThat(optional.isPresent()).isFalse();
-//		
-//	}
+	
+	@Test
+	public void shouldNotFindPlanetByName(){
+		
+		Optional<Planet> optional = sut.findByName("marte");
+		assertThat(optional.isPresent()).isFalse();
+		
+	}
 	
 	
 }
