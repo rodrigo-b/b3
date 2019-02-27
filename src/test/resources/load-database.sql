@@ -1,0 +1,1 @@
+INSERT INTO PLANET  (NAME) VALUES ('Alderaan');
