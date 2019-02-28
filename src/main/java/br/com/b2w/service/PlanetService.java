@@ -7,5 +7,6 @@ public interface PlanetService {
 
 	Planet findById(Planet planet) throws PlanetNotFoundException;
 	Planet findByName(Planet planet) throws PlanetNotFoundException;
+	Planet create(Planet planet) throws Exception;
 	
 }

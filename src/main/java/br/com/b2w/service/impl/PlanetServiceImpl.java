@@ -18,11 +18,28 @@ public class PlanetServiceImpl implements PlanetService{
 		this.planetRepository = planetRepository;
 	}
 	
+	public Planet create(Planet planet) throws Exception {
+		
+		Optional<Planet> optional = planetRepository.findById(planet.getId());
+		
+		if(optional.isPresent()) {
+			throw new Exception("Ja existe");
+		}
+		
+		Planet newPlanet = new Planet(planet.getId(),
+								   planet.getName(),
+								   planet.getClimate(),
+								   planet.getTerrain(),
+								   planet.getTimesInMovie());
+		
+		return planetRepository.save(planet);
+	}
+	
 	@Override
 	public Planet findById(Planet planet) throws PlanetNotFoundException {
 
 		final Optional<Planet> optional = planetRepository.findById(planet.getId());
-	    return optional.orElseThrow(() -> new PlanetNotFoundException("Alterar"));
+	    return optional.orElseThrow(() -> new PlanetNotFoundException("Not exist planet with id: " + planet.getId()));
 	}
 
 	@Override
