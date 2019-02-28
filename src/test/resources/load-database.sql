@@ -1,1 +1,1 @@
-INSERT INTO PLANET  (NAME) VALUES ('Alderaan', 'temperate','grasslands, mountains',2);
+INSERT INTO PLANET  (NAME,CLIMATE,TERRAIN,TIMES_IN_MOVIE) VALUES ('Alderaan', 'temperate','grasslands, mountains',2);

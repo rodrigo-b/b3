@@ -35,12 +35,20 @@ public class Planet {
 	
 	}
 
-	public Planet(long id) {
+	public Planet(Long id) {
 		this.id = id;
 	}
 
 	public Planet(String name) {
 		this.name = name;
+	}
+
+	public Planet(Long id, String name, String climate, String terrain, Integer timesInMovie) {
+		this.id = id;
+		this.name = name;
+		this.climate = climate;
+		this.terrain = terrain;
+		this.timesInMovie = timesInMovie;
 	}
 
 	public Long getId() {
