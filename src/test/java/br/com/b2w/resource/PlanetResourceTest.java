@@ -27,7 +27,7 @@ public class PlanetResourceTest extends SwapiApplicationTests{
 	}
 	
 	@Test
-	public void should_launch_planetnotfoundexception() throws PlanetNotFoundException{
+	public void should_launch_planetnotfoundexception_with_id_param() throws PlanetNotFoundException{
 		
 		given().pathParam("id",999)
 			   .get("/planets/{id}")
@@ -36,7 +36,30 @@ public class PlanetResourceTest extends SwapiApplicationTests{
 			   	 	  .body("error",equalTo("Not exist planet with id: 999"));
 		
 	}
+	
+	@Test
+	public void should_find_by_name(){
+		given().pathParam("name", "Alderaan")
+		   .get("/planets/{name}")
+		   .then().log().body().and()
+		   		  .statusCode(HttpStatus.OK.value())
+		   		  .body("id", equalTo(1),
+		   				"terrain", equalTo("grasslands, mountains"),
+		   				"climate", equalTo("temperate"),
+		   				"timesInMovie", equalTo(2));
+	}
 
+	@Test
+	public void should_launch_planetnotfoundexception_with_name_param() throws PlanetNotFoundException{
+		
+		given().pathParam("name","DARTH")
+			   .get("/planets/{name}")
+			   .then().log().body().and()
+			   	 	  .statusCode(HttpStatus.NOT_FOUND.value())
+			   	 	  .body("error",equalTo("Not exist planet with id: 999"));
+		
+	}
+	
 	@Test
 	public void should_persist_planet() {
 		
@@ -66,4 +89,9 @@ public class PlanetResourceTest extends SwapiApplicationTests{
 	   			   "climate", equalTo("temperate, tropical"),
 	   			   "timesInMovie", equalTo(1));
 	}
+	
+	
+	
+	
+	
 }

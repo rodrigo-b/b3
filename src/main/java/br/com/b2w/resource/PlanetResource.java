@@ -51,6 +51,20 @@ public class PlanetResource{
 		return new ResponseEntity<Planet>(planetReturned, HttpStatus.OK);
 	}
 	
+	@GetMapping("/{name}")
+	public ResponseEntity findByName(@PathVariable("name") String name)throws PlanetNotFoundException{
+		Planet planet = new Planet(name);
+		Planet planetReturned = planetService.findByName(planet);
+		return new ResponseEntity<Planet>(planetReturned, HttpStatus.OK);
+	}	
+
+	@GetMapping("/all")
+	public ResponseEntity List<Planet>findAll(){
+		List<Planet> planets = planetRepository.findAll();
+		return new ResponseEntity<>(planets,HttpStatus.OK);
+	}
+	
+	
 	@ExceptionHandler({PlanetNotFoundException.class})
 	public ResponseEntity<Error> handlePlanetNotFoundException(PlanetNotFoundException e){
 		return new ResponseEntity<Error>(new Error(e.getMessage()), HttpStatus.NOT_FOUND);

@@ -31,7 +31,7 @@ public class PlanetRepositoryTest {
 	private PlanetRepository sut;
 	
 	@Test	
-	public void shouldFindPlanetById(){
+	public void should_find_planet_by_id(){
 		
 		Optional<Planet> optional = sut.findById(1L);
 		assertThat(optional.isPresent()).isTrue();
@@ -46,13 +46,13 @@ public class PlanetRepositoryTest {
 	}
 	
 	@Test 
-	public void shouldNotFindPlanetById(){
+	public void should_not_find_planet_by_id(){
 		Optional<Planet> optional = sut.findById(9999999L);
 		assertThat(optional.isPresent()).isFalse();
 	}
 	
 	@Test
-	public void shouldFindPlanetByName(){
+	public void should_find_planet_by_name(){
 		
 		Optional<Planet> optional = sut.findByName("Alderaan");
 		assertThat(optional.isPresent()).isTrue();
@@ -66,7 +66,7 @@ public class PlanetRepositoryTest {
 	}
 	
 	@Test
-	public void shouldNotFindPlanetByName(){
+	public void should_not_find_planet_by_name(){
 		
 		Optional<Planet> optional = sut.findByName("marte");
 		assertThat(optional.isPresent()).isFalse();

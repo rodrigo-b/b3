@@ -35,6 +35,23 @@ public class PlanetServiceImpl implements PlanetService{
 		return planetRepository.save(planet);
 	}
 	
+	public void delete(Planet planet) throws PlanetNotFoundException{
+		
+		Optional<Planet> optional = planetRepository.findById(planet.getId());
+		
+		if(optional.isPresent()) {
+			throw new Exception("Ja existe");
+		}
+		
+		Planet newPlanet = new Planet(planet.getId(),
+				   planet.getName(),
+				   planet.getClimate(),
+				   planet.getTerrain(),
+				   planet.getTimesInMovie());
+		
+		planetRepository.delete(planet);
+	}
+	
 	@Override
 	public Planet findById(Planet planet) throws PlanetNotFoundException {
 
@@ -46,7 +63,7 @@ public class PlanetServiceImpl implements PlanetService{
 	public Planet findByName(Planet planet) throws PlanetNotFoundException {
 
 		final Optional<Planet> optional = planetRepository.findByName(planet.getName());
-		return optional.orElseThrow(() ->  new PlanetNotFoundException("Alterar"));
+		return optional.orElseThrow(() ->  new PlanetNotFoundException("Not exist planet with name: " + planet.getName()));
 	}
 
 }

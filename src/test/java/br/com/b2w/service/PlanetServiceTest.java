@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import br.com.b2w.model.Planet;
 import br.com.b2w.repository.PlanetRepository;
+import br.com.b2w.service.exception.PlanetNotFoundException;
 import br.com.b2w.service.impl.PlanetServiceImpl;
 
 @RunWith(SpringRunner.class)
@@ -39,7 +40,7 @@ public class PlanetServiceTest {
 	}
 	
 	@Test
-	public void shouldFindPlanetById() throws Exception{
+	public void should_find_planet_by_id() throws PlanetNotFoundException{
 		
 		when(planetRepository.findById(planet.getId())).thenReturn(Optional.of(planet));
 		
@@ -51,4 +52,20 @@ public class PlanetServiceTest {
 		assertThat(planet.getName()).isEqualTo(NAME);
 		
 	}
+	
+	@Test
+	public void should_find_planet_by_name()throws PlanetNotFoundException{
+		
+		when(planetRepository.findByName(planet.getName())).thenReturn(Optional.of(planet));
+		
+		Planet planetTest = sut.findByName(planet);
+		
+		verify(planet).findByName(NAME);
+		
+		assertThat(planetTest).isNotNull();
+		assertThat(planet.getId()).isEqualTo(ID);
+		
+	}
+	
+	
 }
